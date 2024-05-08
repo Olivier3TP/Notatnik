@@ -7,13 +7,16 @@ from .forms import NoteForm, EditNoteForm
 # def notes_list(request):
 #     notes = Note.objects.all()
 #     return render(request, "notes.list.html", {"notes": notes})
+def index(request):
+    notes = Note.objects.all()
+    return render(request, index.html, {'notes': notes})
 
 def notes_list(request):
     notes = Note.objects.all()
     paginator = Paginator(notes, 3)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
-    return render(request, "notes.list.html", {"notes": notes})
+    return render(request, "notes_list.html", {"notes": notes})
 
 def add_note(request):
     if request.method == "POST":

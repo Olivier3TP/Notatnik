@@ -16,8 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+import aplikacjaNotatnik
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('note/', include("aplikacjaNotatnik.urls")),
+    path('', include("aplikacjaNotatnik.urls")),
 ]
