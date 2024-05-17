@@ -35,7 +35,7 @@ def add_note(request):
             return redirect('note_list')
     else:
         form = NoteForm()
-    return render(request, "add_note.html", {"form": form})
+    return render(request, "add_and_edit_note.html", {"form": form})
 
 def detail_note(request, id):
     note = get_object_or_404(Note, pk=id)
@@ -50,4 +50,4 @@ def edit_note(request, id):
             return redirect('detail_note', id=note.id)
     else:
         form = EditNoteForm(instance=note)
-    return render(request, 'edit_note.html', {"form": form})
+    return render(request, 'add_and_edit_note.html', {"form": form})

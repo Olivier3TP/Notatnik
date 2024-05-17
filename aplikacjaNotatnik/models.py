@@ -23,4 +23,4 @@ class Note(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('detail_note', args=[self.time.year, self.time.month, self.time.day, self.id])
+        return reverse('detail_note', args=[self.id])
