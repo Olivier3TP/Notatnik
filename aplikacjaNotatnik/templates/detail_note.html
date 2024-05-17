@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Moje notatki{% endblock %}
+
+<div class="main-div">
+    {% block content %}
+        <a href="{% url 'notes_list' %}"><-</a>
+
+        <div class="detail-div">
+            <h1>{{ note.title }}</h1>
+            <h3>{{ note.text }}</h3>
+            <p>Status: {{ note.status }}</p>
+            <p>Dodana przez {{ note.author }} o {{ note.time }}</p>
+            <a href="{% url 'edit_note' note.id %}">Edytuj notatkę</a>
+        </div>
+    {% endblock %}
+</div>
