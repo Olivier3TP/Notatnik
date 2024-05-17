@@ -19,7 +19,8 @@ class Note(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Usually')
     id = models.AutoField(primary_key=True)
 
-    def get_absolute_url(self):
-        return reverse()
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('detail_note', args=[self.time.year, self.time.month, self.time.day, self.id])

@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "css/notatnik.css" %}" rel="stylesheet">
+</head>
+<body>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div id="sidebar"></div>
+</body>
+</html>

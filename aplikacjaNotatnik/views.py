@@ -1,4 +1,4 @@
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Note
 from .forms import NoteForm, EditNoteForm
@@ -7,16 +7,25 @@ from .forms import NoteForm, EditNoteForm
 # def notes_list(request):
 #     notes = Note.objects.all()
 #     return render(request, "notes.list.html", {"notes": notes})
-def index(request):
-    notes = Note.objects.all()
-    return render(request, index.html, {'notes': notes})
 
 def notes_list(request):
     notes = Note.objects.all()
+    important_notes = Note.objects.filter(status='Important')
+    usually_notes = Note.objects.filter(status='Usually')
+    notes = list(important_notes) + list(usually_notes)
     paginator = Paginator(notes, 3)
     page_number = request.GET.get('page')
-    page = paginator.get_page(page_number)
-    return render(request, "notes_list.html", {"notes": notes})
+    try:
+        notes = paginator.page(page_number)
+    except PageNotAnInteger:
+        notes = paginator.page(1)
+    except EmptyPage:
+        notes = paginator.page(paginator.num_pages)
+    return render(request, 'notes_list.html', {'notes': notes})
+
+    # page = paginator.get_page(page_number)
+    # return render(request, "notes_list.html", {"page": page})
+
 
 def add_note(request):
     if request.method == "POST":
