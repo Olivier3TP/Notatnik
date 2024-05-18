@@ -32,7 +32,7 @@ def add_note(request):
         form = NoteForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('note_list')
+            return redirect('notes_list')
     else:
         form = NoteForm()
     return render(request, "add_and_edit_note.html", {"form": form})

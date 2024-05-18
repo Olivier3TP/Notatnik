@@ -2,18 +2,25 @@
 {% load static %}
 
 {% block title %}Moje notatki{% endblock %}
-<link rel="icon" href="{% static 'notes-icon.png' %}" type="image/x-icon">
 <link href="{% static "css/notatnik.css" %}" rel="stylesheet">
+<link rel="icon" href="{% static 'notes-icon.png' %}" type="image/x-icon">
 
 {% block content %}
-    <div class="main-div">
-        <h1>Moje notatki</h1>
-        {% for note in notes %}
-            <h2><a href="{{ note.get_absolute_url }}">{{ note.title }}</a></h2>
-            <p class="info">Opublikowany {{ note.time }} Status: {{ note.status }}</p>
-            {{ note.text|truncatewords:30|linebreaks }}
-        {% endfor %}
-        <a href="{% url 'add_note' %}">Dodaj nową notatkę</a>
-        {% include "pagination.html" with page=notes %}
-    </div>
+    <main>
+        <div class="main-div">
+            <h1 class="info">Moje notatki</h1>
+            <hr>
+            {% for note in notes %}
+                <h2><a class="note-title" href="{{ note.get_absolute_url }}">{{ note.title }}</a></h2>
+                <div class="note-text">{{ note.text|truncatewords:30|linebreaks }}</div>
+                <p class="info">Opublikowany {{ note.time }} Status: {{ note.status }}</p>
+            {% endfor %}
+            <hr>
+            <div class="info-center">
+                <a class="btn btn-warning add-note-margin" href="{% url 'add_note' %}">Dodaj nową notatkę</a>
+                <br>
+                {% include "pagination.html" with page=notes %}
+            </div>
+        </div>
+    </main>
 {% endblock %}

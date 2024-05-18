@@ -5,11 +5,15 @@
 <link href="{% static "css/notatnik.css" %}" rel="stylesheet">
 
 {% block content %}
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Zapisz</button>
-    </form>
-
+    <div class="main-div">
+        <form method="post" class="form-style">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <hr>
+            <div class="info-center">
+                <a class="btn btn-warning" href="{% url 'notes_list' %}">Wróć</a>
+                <button class="btn btn-warning" type="submit">Zapisz</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}
