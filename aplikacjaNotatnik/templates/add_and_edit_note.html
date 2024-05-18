@@ -1,7 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Zapisz</button>
-</form>
+<link rel="icon" href="{% static 'notes-icon.png' %}" type="image/x-icon">
+<link href="{% static "css/notatnik.css" %}" rel="stylesheet">
+
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Zapisz</button>
+    </form>
+
+{% endblock %}
