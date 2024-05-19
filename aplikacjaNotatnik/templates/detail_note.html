@@ -7,16 +7,17 @@
 
 {% block content %}
     <div class="main-div">
-        <div class="info-center">
-            <a class="btn btn-warning" href="{% url 'notes_list' %}">Wróć</a>
-            <a class="btn btn-warning" href="{% url 'edit_note' note.id %}">Edytuj notatkę</a>
-        </div>
-        <hr>
         <div class="detail-div note-text">
             <h1>{{ note.title }}</h1>
+            <hr>
             <h3>{{ note.text }}</h3>
             <p>Status: {{ note.status }}</p>
             <p>Dodana przez {{ note.author }} o {{ note.time }}</p>
+        </div>
+        <hr>
+        <div class="info-center">
+            <a class="btn btn-warning" href="{% url 'notes_list' %}">Wróć</a>
+            <a class="btn btn-warning" href="{% url 'edit_note' note.id %}">Edytuj notatkę</a>
         </div>
     </div>
 {% endblock %}
